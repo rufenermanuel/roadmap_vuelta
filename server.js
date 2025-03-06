@@ -7,12 +7,16 @@ const app = express();
 // Definir el puerto en el que escuchará el servidor
 const port = 3000;
 
-// Definir una ruta básica para la raíz "/"
-app.get("/", (req, res) => {
-  res.send("¡Hola Mundo desde Node.js y Express!");
-});
+// Middleware para manejar JSON
+app.use(express.json());
+// Middleware para manejar datos de formularios
+app.use(express.urlencoded({ extended: true }));
 
-// Iniciar el servidor para escuchar en el puerto definido
+// Importamos las rutas
+const userRoutes = require("./src/routes/users");
+app.use("/api/users", userRoutes);
+
+// Iniciamos el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
