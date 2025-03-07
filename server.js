@@ -21,7 +21,12 @@ const path = require("path");
 // Servir archivos estáticos desde la carpeta "public"
 app.use(express.static(path.join(__dirname, "public")));
 
-// Iniciamos el servidor
+// Configurar la ruta raíz para servir form.html automáticamente
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "form.html"));
+});
+
+// Iniciar el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
 });
