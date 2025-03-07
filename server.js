@@ -16,6 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 const userRoutes = require("./src/routes/users");
 app.use("/api/users", userRoutes);
 
+const path = require("path");
+
+// Servir archivos estáticos desde la carpeta "public"
+app.use(express.static(path.join(__dirname, "public")));
+
 // Iniciamos el servidor
 app.listen(port, () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);

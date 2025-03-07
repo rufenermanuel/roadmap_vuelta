@@ -12,14 +12,14 @@ const getUsers = (req, res) => {
 // Crear un nuevo usuario
 const createUser = (req, res) => {
   const { name, email } = req.body;
-
+  console.log("Datos recibidos:", { name, email }); // Verifica qué llega desde el frontend
   if (!name || !email) {
     return res.status(400).json({ error: "Faltan datos" });
   }
 
   const newUser = { id: users.length + 1, name, email };
   users.push(newUser);
-
+  console.log("Usuario creado:", newUser); // Verifica el usuario agregado a la lista
   res.status(201).json(newUser);
 };
 
@@ -52,4 +52,5 @@ const deleteUser = (req, res) => {
   res.status(200).json(deletedUser[0]);
 };
 
+// Exportar las funciones
 module.exports = { getUsers, createUser, updateUser, deleteUser };
